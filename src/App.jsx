@@ -5,6 +5,8 @@ import Footer from "./component/Footer/Footer"
 import Header from "./component/Header/Header"
 import SelectedPlayers from "./component/SelectedPlayers/SelectedPlayers"
 import Available from "./component/Available/Available"
+  import { ToastContainer, Zoom, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [selectItems, setSelectItems] = useState([]);
@@ -33,7 +35,21 @@ const handleValidation = (payment)=>{
 
   else {
 
-    alert("Insufficient Balance");
+
+    toast.error('Insufficient Balance', {
+      position: "top-center",
+      autoClose: 1200,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Zoom,
+      });
+    
+
+
     setValidation(0 + decrementAmount);
 
   }
@@ -50,7 +66,18 @@ const handleValidation = (payment)=>{
     // console.log(biddingPrice);
    
   
-    alert("Congratulations! You got Amout: 60000000")
+    toast.success('Congratulations! You got Amout: 60000000', {
+      position: "top-center",
+      autoClose: 1200,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Zoom,
+      });
+
     setAutoPrice((price + incrementAmount));
   }
 
@@ -64,13 +91,37 @@ const handleValidation = (payment)=>{
     
     if(selectItems.length <= 5 && autoPrice > validation  ){
        const newPlayers = [...selectItems, players];
-      alert("Successfully added players")
+    
+
+      toast.success('Successfully added players', {
+        position: "top-center",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Zoom,
+        });
+      
       setSelectItems(newPlayers);
      }
 
      else {
 
-        alert("You can not add");
+
+      toast.error('You can not add', {
+        position: "top-center",
+        autoClose: 1200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Zoom,
+        });
          
         return 
     }
@@ -130,6 +181,9 @@ const handleValidation = (payment)=>{
 
       {/* footer */}
       <Footer></Footer>
+
+      <ToastContainer />
+
     </>
   )
 }
